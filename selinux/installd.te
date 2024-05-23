@@ -1,0 +1,1 @@
+allow installd cpuctl_device:dir { search };

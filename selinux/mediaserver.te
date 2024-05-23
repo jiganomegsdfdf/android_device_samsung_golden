@@ -1,0 +1,9 @@
+allow mediaserver camera_prop:property_service set;
+allow mediaserver { stm_device pwr_device }:chr_file rw_file_perms;
+allow mediaserver admsrv_tmpfs:file rw_file_perms;
+allow mediaserver admsrv:fd use;
+allow mediaserver camera_data_file:dir { create w_dir_perms };
+allow mediaserver camera_data_file:file { create w_file_perms };
+allow mediaserver shell_data_file:dir r_dir_perms;
+allow mediaserver system_server:unix_stream_socket { read write };
+unix_socket_connect(mediaserver, adm, admsrv)

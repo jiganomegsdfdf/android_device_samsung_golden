@@ -1,0 +1,16 @@
+# STE: Modem Security daemon
+type copsd, domain;
+type copsd_exec, exec_type, file_type;
+init_daemon_domain(copsd)
+
+allow copsd self:capability { chown dac_override fowner fsetid net_admin setuid setgid };
+allow copsd self:netlink_socket create_socket_perms;
+allow copsd { sysfs sysfs_wake_lock }:file w_file_perms;
+allow copsd { radio_device tee_device }:chr_file rw_file_perms;
+allow copsd { mmc_block_device root_block_device }:blk_file rw_file_perms;
+allow copsd system_data_file:dir rw_dir_perms;
+allow copsd block_device:dir search;
+allow copsd radio_data_file:file create_file_perms;
+file_type_auto_trans(copsd, socket_device, cops_socket)
+type_transition copsd system_data_file:file radio_data_file;
+unix_socket_connect(copsd, tad, tad)

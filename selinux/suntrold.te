@@ -1,0 +1,6 @@
+# suntrold
+type suntrold, domain;
+type suntrold_exec, exec_type, file_type;
+init_daemon_domain(suntrold)
+
+allow suntrold system_data_file:dir create_dir_perms;

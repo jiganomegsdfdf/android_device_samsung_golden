@@ -1,0 +1,14 @@
+# STE, SMS Server control
+type sms_server, domain;
+type sms_server_exec, exec_type, file_type;
+init_daemon_domain(sms_server)
+
+allow sms_server self:capability { setuid sys_admin dac_override net_admin };
+allow sms_server self:{ netlink_socket socket } create_socket_perms;
+allow sms_server apk_private_data_file:dir search;
+allow sms_server sms_server_socket:sock_file create_file_perms;
+allow sms_server socket_device:dir rw_dir_perms;
+file_type_auto_trans(sms_server, system_data_file, radio_data_file)
+type_transition sms_server socket_device:sock_file sms_server_socket;
+unix_socket_connect(sms_server, simd, simd);
+unix_socket_connect(sms_server, cn, cn_server);

@@ -1,0 +1,20 @@
+# STE admsrv
+#
+type admsrv, domain;
+type admsrv_exec, exec_type, file_type;
+type admsrv_tmpfs, file_type;
+type_transition admsrv tmpfs:file admsrv_tmpfs;
+domain_auto_trans(init, admsrv_exec, admsrv)
+
+allow admsrv admsrv:netlink_socket create_socket_perms;
+allow admsrv admsrv_tmpfs:file create_file_perms;
+allow admsrv audio_device:dir search;
+allow admsrv { audio_device radio_device stm_device }:chr_file rw_file_perms;
+allow admsrv self:capability { chown dac_override fowner net_admin sys_nice };
+allow admsrv { shell_data_file system_data_file }:dir rw_dir_perms;
+allow admsrv { sysfs sysfs_devices_system_cpu sysfs_wake_lock }:file rw_file_perms;
+allow admsrv tmpfs:dir rw_dir_perms;
+allow admsrv audio_data_file:file create_file_perms;
+allow admsrv adm_socket:sock_file create_file_perms;
+type_transition admsrv { shell_data_file system_data_file }:file audio_data_file;
+type_transition admsrv shell_data_file:sock_file adm_socket;

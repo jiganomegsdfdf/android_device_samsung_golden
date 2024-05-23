@@ -1,0 +1,4 @@
+allow toolbox ram_device:blk_file { getattr open read write };
+allow toolbox sysfs:file { getattr open read setattr };
+allow toolbox unlabeled:file { getattr setattr };
+allow toolbox unlabeled:dir search;

@@ -1,0 +1,1 @@
+allow goldenparts_sysfs sysfs:filesystem associate;

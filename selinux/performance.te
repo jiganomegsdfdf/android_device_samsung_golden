@@ -1,0 +1,10 @@
+# Performance Control
+
+allow system_app sysfs_devices_system_iosched:file { open read write getattr };
+allow system_app sysfs_lowmemorykiller:file { open read write getattr};
+allow system_app sysfs:file { open read write getattr};
+allow system_app sysfs_devices_system_cpu:file { open read write getattr };
+allow system_app proc_dirty_ratio:file { open read write getattr };
+allow system_app proc:file { open read write getattr };
+allow system_app system_app_data_file:file { open read execute execute_no_trans};
+

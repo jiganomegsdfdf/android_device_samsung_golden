@@ -1,0 +1,2 @@
+allow ueventd ueventd:capability {sys_nice sys_resource};
+allow ueventd goldenparts_sysfs:file relabelto;

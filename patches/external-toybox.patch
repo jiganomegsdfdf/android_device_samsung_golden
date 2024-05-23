@@ -1,0 +1,18 @@
+diff --git a/Android.bp b/Android.bp
+index db67353..0d265b6 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -468,13 +468,6 @@ cc_binary {
+     },
+ }
+ 
+-cc_binary {
+-    name: "toybox_vendor",
+-    defaults: ["toybox-defaults", "toybox-defaults-symlinks"],
+-    shared_libs: toybox_libraries,
+-    vendor: true,
+-}
+-
+ cc_binary {
+     name: "toybox_static",
+     defaults: ["toybox-defaults"],

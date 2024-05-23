@@ -1,0 +1,12 @@
+[
+	{
+		"remote": "aosp",
+		"repository": "platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7",
+		"target_path": "prebuilts/gcc/linux-x86/arm/arm-eabi-4.7",
+		"revision": "master"
+	},
+    {
+        "repository": "android_external_stlport",
+        "target_path": "external/stlport"
+    }
+]

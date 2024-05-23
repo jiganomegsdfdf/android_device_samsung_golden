@@ -1,0 +1,9 @@
+type sysinit, domain;
+type sysinit_exec, exec_type, file_type;
+
+allow sysinit self:capability { dac_override fowner chown fsetid };
+allow sysinit self:process setfscreate;
+allow sysinit { dhcp_data_file radio_data_file system_data_file wifi_data_file }:dir w_dir_perms;
+allow sysinit { dhcp_data_file system_data_file wifi_data_file }:file create_file_perms;
+allow sysinit radio_data_file:file { create_file_perms relabelfrom relabelto };
+allow sysinit { rootfs userinit_exec }:file rx_file_perms;

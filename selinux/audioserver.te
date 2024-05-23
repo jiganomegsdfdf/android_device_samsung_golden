@@ -1,0 +1,1 @@
+allow audioserver sysfs:file { getattr open read };

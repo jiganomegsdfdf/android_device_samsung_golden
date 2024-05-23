@@ -1,0 +1,1 @@
+allow vold modem_file:dir r_dir_perms;

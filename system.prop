@@ -1,0 +1,12 @@
+rild.libpath=/system/lib/libsecril-shim.so
+rild.libargs=-d /dev/ttyS0
+
+# test media
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
+
+# Debugging
+persist.logd.size=16777216
+ro.logd.filter=disable
+persist.logd.filter=disable
+persist.sys.usb.config=mtp,adb

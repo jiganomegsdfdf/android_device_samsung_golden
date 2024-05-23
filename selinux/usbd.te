@@ -1,0 +1,2 @@
+allow usbd debugfs:file { open write };
+allow usbd sysfs:file { getattr open read };

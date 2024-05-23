@@ -1,0 +1,20 @@
+allow {
+admsrv
+atd
+bootanim
+cn_server
+conn_init
+copsd
+gpsd
+init
+init_shell
+modem-help
+psccd
+rild
+simd
+sms_server
+suntrold
+surfaceflinger
+tad
+watchdogd
+} self:process execmem;

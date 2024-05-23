@@ -1,0 +1,6 @@
+type goldenparts_sysfs, file_type;
+allow system_app goldenparts_sysfs:file { open getattr read write create lock };
+allow init goldenparts_sysfs:file { open getattr setattr read write create lock };
+allow init goldenparts_sysfs:file relabelto;
+allow kernel goldenparts_sysfs:file relabelto;
+allow healthd goldenparts_sysfs:file { open getattr read };

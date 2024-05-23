@@ -1,0 +1,13 @@
+#SEMC: TrimArea Daemon
+type tad, domain;
+type tad_exec, exec_type, file_type;
+init_daemon_domain(tad)
+
+r_dir_file(tad, modem_file)
+allow tad { bluetooth_data_file wifi_data_file }:file rw_file_perms;
+allow tad block_device:dir search;
+allow tad root_block_device:blk_file rw_file_perms;
+allow tad self:capability dac_override;
+allow tad tad_socket:sock_file w_file_perms;
+allow tad tmpfs:chr_file rw_file_perms;
+file_type_auto_trans(tad, system_data_file, tad_data_file)
