@@ -65,6 +65,11 @@ TARGET_EXTERNAL_APPS = sdcard1
 # Releasetools
 #TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/golden
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+     /system/lib/hw/audio_policy.DB8520H.so|libsamsung_symbols.so \
+	 /system/lib/hw/audio.primary.DB8520H.so|libsamsung_symbols.so 
+
 # Ramdisk
 TARGET_PROVIDES_ENVIRON_RC := true
 
