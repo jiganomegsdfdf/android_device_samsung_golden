@@ -1,1 +1,2 @@
 allow hal_cas_default sysfs:file { getattr open read };
+allow hal_cas_default debugfs:file { open write };

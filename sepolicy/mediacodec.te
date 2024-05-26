@@ -2,3 +2,4 @@ allow mediacodec sysfs:file r_file_perms;
 allow mediacodec system_file:file execmod;
 allow mediacodec hal_configstore_default:binder call;
 allow mediacodec hal_configstore_ISurfaceFlingerConfigs:hwservice_manager find;
+allow mediacodec debugfs:file { open write };

@@ -28,6 +28,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 # Inherit the proprietary vendors blobs for all codinas.
 $(call inherit-product-if-exists, vendor/samsung/golden/golden-vendor.mk)
 
+
 #Releasetools
 #PRODUCT_COPY_FILES += \
 #	$(LOCAL_PATH)/blobinstaller.sh:blobinstaller.sh \
@@ -38,13 +39,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.samsunggolden.rc:root/init.samsunggolden.rc \
     $(LOCAL_PATH)/rootdir/ueventd.samsunggolden.rc:root/ueventd.samsunggolden.rc \
     $(LOCAL_PATH)/rootdir/fstab.samsunggolden:root/fstab.samsunggolden \
+    $(LOCAL_PATH)/rootdir/fstab.samsunggolden:$(TARGET_COPY_OUT_RAMDISK)/fstab.samsunggolden \
     $(LOCAL_PATH)/rootdir/init.ste.rc:root/init.ste.rc \
     $(LOCAL_PATH)/rootdir/init.samsunggolden.usb.rc:root/init.samsunggolden.usb.rc
 #    $(LOCAL_PATH)/rootdir/lpm.rc:root/lpm.rc
 
 # Recovery ramdisk, libraries and modules.
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/rootdir/init.recovery.samsungcodina.rc:root/init.recovery.samsungcodina.rc \
     $(LOCAL_PATH)/recovery/rootdir/etc/recovery.fstab:recovery/root/etc/recovery.fstab \
     $(LOCAL_PATH)/recovery/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
     $(LOCAL_PATH)/recovery/rootdir/sbin/libkeyutils.so:recovery/root/sbin/libkeyutils.so \
@@ -262,7 +263,6 @@ wificond
 
 # Wifi
 PRODUCT_PACKAGES += \
-android.hardware.wifi.offload@1.0-service \
 android.hardware.wifi@1.0-service
 
 # USB HAL
@@ -306,13 +306,8 @@ android.hardware.configstore@1.0-service \
 android.hardware.configstore-utils \
 android.hardware.graphics.allocator@2.0 \
 android.hardware.graphics.composer@2.1-impl \
-android.hardware.graphics.mapper@2.0-impl \
-android.hardware.memtrack@1.0-impl 
+android.hardware.graphics.mapper@2.0-impl
 
-# Lights
-#PRODUCT_PACKAGES += \
-#android.hardware.light@2.0-impl \
-#android.hardware.light@2.0-service
 
 # Hardware repo
 $(call inherit-product, hardware/u8500/Android.mk)
@@ -333,7 +328,7 @@ PRODUCT_PACKAGES += \
     gps.montblanc \
     libsecril-shim \
     android.hardware.camera.provider@2.4-impl-legacy \
-    camera.device@1.0-impl-legacy
+    camera.device@1.0-impl-legacy 
 
 # Missing Symbols
 PRODUCT_PACKAGES += \

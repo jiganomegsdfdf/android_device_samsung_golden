@@ -1,1 +1,2 @@
 allow thermalserviced sysfs:file { getattr open read };
+allow thermalserviced debugfs:file { open write };

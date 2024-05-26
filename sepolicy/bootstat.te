@@ -1,1 +1,2 @@
 allow bootstat sysfs:file { getattr open read };
+allow bootstat sysfs:file { getattr open read };

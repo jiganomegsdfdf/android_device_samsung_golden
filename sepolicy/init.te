@@ -20,4 +20,8 @@ allow init shell_data_file:file { create lock open read setattr write };
 allow init sysfs:lnk_file setattr;
 allow init system_data_file:file rename;
 allow init shell_data_file:file unlink;
-
+allow goldenparts_sysfs sysfs:filesystem associate;
+allow init audio_device:dir mounton;
+allow init debugfs:dir mounton;
+allow init debugfs:file write;
+allow init modem_file:dir create;

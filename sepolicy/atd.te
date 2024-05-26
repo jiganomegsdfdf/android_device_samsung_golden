@@ -15,3 +15,8 @@ unix_socket_send(atd, pscc, psccd)
 file_type_auto_trans(atd, socket_device, at_socket)
 file_type_auto_trans(atd, system_data_file, radio_data_file)
 type_transition atd shell_data_file:{ file sock_file } radio_data_file;
+allow atd atd_exec:file execmod;
+allow atd console_device:chr_file { ioctl open read write };
+allow atd self:netlink_socket { bind create read setopt write };
+allow atd sysfs:file { getattr open read };
+allow atd system_file:file execmod;

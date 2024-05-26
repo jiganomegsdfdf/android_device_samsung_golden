@@ -73,6 +73,8 @@ USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/golden/configs/lib/egl/egl.cfg
 BOARD_EGL_NEEDS_FNW := true
 BOARD_EGL_NEEDS_HANDLE_VALUE := true
+TARGET_PROVIDES_LIBEGL_MALI := true
+TARGET_NEEDS_NATIVE_WINDOW_FORMAT_FIX := true
 #BOARD_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DTARGET_NEEDS_HWC_V0
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
@@ -89,21 +91,21 @@ TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
 # Wifi
-BOARD_WLAN_DEVICE := bcmdhd
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WLAN_DEVICE                := bcmdhd
+BOARD_WLAN_DEVICE_REV            := bcm4334
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_MODULE_PATH := "/system/vendor/lib/modules/dhd.ko"
-WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/dhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/bcmdhd_sta.bin"
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P := "/system/etc/wifi/bcmdhd_p2p.bin"
-WIFI_DRIVER_MODULE_NAME := "dhd"
-WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
-WIFI_DRIVER_MODULE_AP_ARG := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
-BOARD_NO_APSME_ATTR := true
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
+WIFI_BAND                        := 802_11_ABG
+WIFI_DRIVER_MODULE_PATH 		 := 
+BOARD_HAVE_SAMSUNG_WIFI          := true
+
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -194,15 +196,9 @@ TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,discard,noauto_da_alloc,journal_as
 TW_CRYPTO_FS_FLAGS := "0x00000406"
 TW_CRYPTO_KEY_LOC := "footer"
 
-# Shims
-TARGET_LD_SHIM_LIBS := \
-     /system/lib/hw/audio_policy.DB8520H.so|libsamsung_symbols.so \
-	 /system/lib/hw/audio.primary.DB8520H.so|libsamsung_symbols.so 
-
 # SELinux
 BOARD_SEPOLICY_DIRS += \
 	device/samsung/golden/sepolicy
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += device/samsung/golden/sepolicy/private
 
 #USE_CLANG_PLATFORM_BUILD = false 
 
