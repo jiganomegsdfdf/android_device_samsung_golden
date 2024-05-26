@@ -1,12 +1,3 @@
-# Graphics
-/dev/hwmem		u:object_r:graphics_device:s0
-/dev/comp0		u:object_r:graphics_device:s0
-/dev/mali			u:object_r:graphics_device:s0
-/dev/b2r2_blt		u:object_r:graphics_device:s0
-
-# admsrv
-/system/bin/admsrv	u:object_r:admsrv_exec:s0	
-
 # CodinalteParts
 /sys/module/doubletap2wake/parameters/use_wakelock				u:object_r:goldenparts_sysfs:s0
 /sys/module/doubletap2wake/parameters/enable						u:object_r:goldenparts_sysfs:s0
@@ -19,5 +10,136 @@
 /sys/devices/platform/ab8505-i2c.0/ab8500-usb.0/reset				u:object_r:goldenparts_sysfs:s0
 /sys/devices/platform/musb-ux500.0/musb-hdrc/mode					u:object_r:goldenparts_sysfs:s0
 /sys/module/board_codina_sdi/parameters/wlan_mac					u:object_r:goldenparts_sysfs:s0
-/data/misc/charger/charger_show_datetime 							u:object_r:goldenparts_sysfs:s0
-/data/misc/charger/charger_no_suspend 								u:object_r:goldenparts_sysfs:s0
+/data/misc/charger/charger_show_datetime							u:object_r:goldenparts_sysfs:s0
+/data/misc/charger/charger_no_suspend								u:object_r:goldenparts_sysfs:s0
+
+# System
+/system/bin/at_distributor      u:object_r:at_distributor_exec:s0
+/system/bin/usbid_init.sh       u:object_r:shell_exec:s0
+
+# Devices
+/dev/ape_opp		u:object_r:pwr_device:s0
+/dev/b2r2_blt		u:object_r:gpu_device:s0
+/dev/block/mmcblk0.*	u:object_r:mmc_block_device:s0
+/dev/block/mmcblk0	u:object_r:root_block_device:s0
+/dev/block/mmcblk0p[56]*	u:object_r:modem_block_device:s0
+/dev/camera_flash	u:object_r:camera_device:s0
+/dev/cg2900_.*		u:object_r:cg2900_device:s0
+/dev/cg2900_gnss	u:object_r:gps_device:s0
+/dev/cm_.*		u:object_r:audio_device:s0
+/dev/comp0		u:object_r:gpu_device:s0
+/dev/cpu_dma_latency	u:object_r:device_latency:s0
+/dev/dbx500_mloader_fw	u:object_r:radio_device:s0
+/dev/db8500-modem-trace	u:object_r:radio_device:s0
+/dev/ddr_opp		u:object_r:pwr_device:s0
+/dev/hwmem		u:object_r:gpu_device:s0
+/dev/i2c-[0-3]*		u:object_r:sensors_device:s0
+/dev/i2c-2		u:object_r:camera_device:s0
+/dev/mali		u:object_r:gpu_device:s0
+/dev/mmio_camera	u:object_r:camera_device:s0
+/dev/radio0		u:object_r:fm_radio_device:s0
+/dev/rfkill		u:object_r:rfkill_device:s0
+/dev/rpc		u:object_r:radio_device:s0
+/dev/sec		u:object_r:radio_device:s0
+/dev/shm		u:object_r:audio_device:s0
+/dev/socket/at_core	u:object_r:at_socket:s0
+/dev/socket/catd_a	u:object_r:simd_socket:s0
+/dev/socket/cops\.socket	u:object_r:cops_socket:s0
+/dev/socket/cn_.*	u:object_r:cn_socket:s0
+/dev/socket/modemcatcher	u:object_r:modem_socket:s0
+/dev/socket/msup	u:object_r:modem_socket:s0
+/dev/socket/pscc.*	u:object_r:pscc_socket:s0
+/dev/socket/simpbd	u:object_r:simd_socket:s0
+/dev/socket/sms_server	u:object_r:sms_server_socket:s0
+/dev/socket/sterc.*	u:object_r:pscc_socket:s0
+/dev/socket/tad		u:object_r:tad_socket:s0
+/dev/ste_gnss_socket	u:object_r:gps_socket:s0
+/dev/stm		u:object_r:stm_device:s0
+/dev/tee		u:object_r:tee_device:s0
+/dev/ttyAMA[0-1]*	u:object_r:bluetooth_device:s0
+/dev/ttyAMA2		u:object_r:console_device:s0
+/dev/ttyGS0		u:object_r:at_device:s0
+
+# Sensors
+/dev/rn5t592                u:object_r:sensors_device:s0
+/dev/alps_io                u:object_r:sensors_device:s0
+/dev/gp2a_prox              u:object_r:sensors_device:s0
+/dev/gp2a_light             u:object_r:sensors_device:s0
+/dev/mpu60x0_gyro           u:object_r:sensors_device:s0
+/dev/mpu60x0_accel          u:object_r:sensors_device:s0
+/dev/pipes                  u:object_r:socket_device:s0
+
+# GPS
+/dev/ttyAMA1                u:object_r:gps_device:s0
+/dev/mmc328x                u:object_r:gps_device:s0
+/dev/bma222                 u:object_r:gps_device:s0
+/dev/ecompass_ctrl          u:object_r:gps_device:s0
+
+# System files
+/system/bin/admsrv	u:object_r:admsrv_exec:s0
+/system/bin/at_core	u:object_r:atd_exec:s0
+/system/bin/chargemon	u:object_r:healthd_exec:s0
+/system/bin/cn_server	u:object_r:cn_server_exec:s0
+/system/bin/copsdaemon	u:object_r:copsd_exec:s0
+/system/bin/hciattach	u:object_r:hci_attach_exec:s0
+/system/bin/install_wlan.sh	u:object_r:conn_init_exec:s0
+/system/bin/iw		u:object_r:iw_exec:s0
+/system/bin/lbsd	u:object_r:gpsd_exec:s0
+/system/bin/modemcatcher	u:object_r:modem-help_exec:s0
+/system/bin/modem-supervisor	u:object_r:modem-help_exec:s0
+/system/bin/msa		u:object_r:conn_init_exec:s0
+/system/bin/psccd	u:object_r:psccd_exec:s0
+/system/bin/simd	u:object_r:simd_exec:s0
+# simpbd executable has (essentially) the same requirements as simd.
+/system/bin/simpbd	u:object_r:simd_exec:s0
+/system/bin/sms_server	u:object_r:sms_server_exec:s0
+# stercd executable has (essentially) the same requirements as psccd.
+/system/bin/stercd	u:object_r:psccd_exec:s0
+/system/bin/suntrold	u:object_r:suntrold_exec:s0
+/system/etc/ste_modem.sh	u:object_r:conn_init_exec:s0
+/system/etc/ril_config	u:object_r:radio_data_file:s0
+/system/xbin/watchdog-kicker	u:object_r:watchdogd_exec:s0
+
+# SEMC: TrimArea Daemon and early TA-users
+/system/bin/rfhal_export	u:object_r:tad_exec:s0
+/system/bin/startupflag		u:object_r:tad_exec:s0
+/system/bin/tad			u:object_r:tad_exec:s0
+/system/bin/taimport		u:object_r:tad_exec:s0
+/system/bin/updatemiscta	u:object_r:tad_exec:s0
+/system/bin/wait4tad		u:object_r:tad_exec:s0
+
+# Bluetooth daemon
+/system/bin/bluetoothd u:object_r:bluetoothd_exec:s0
+/system/bin/bluetoothd-main u:object_r:bluetoothd_main_exec:s0
+/system/bin/bluetoothd-snoop u:object_r:bluetoothd_snoop_exec:s0
+
+# Data labeling
+/data/CALLTIME(/.*)?	u:object_r:radio_data_file:s0
+/data/CGPS_LOG.txt	u:object_r:gps_data_file:s0
+/data/EVENT_LOG.txt	u:object_r:gps_data_file:s0
+/data/GPS_NV_Data.bin	u:object_r:gps_data_file:s0
+/data/GNB_DEBUG.txt	u:object_r:gps_data_file:s0
+/data/HALGPS_conf.cfg	u:object_r:gps_data_file:s0
+/data/NAV_DEBUG.txt	u:object_r:gps_data_file:s0
+/data/NMEA_DEBUG.txt	u:object_r:gps_data_file:s0
+/data/adm.sqlite.*	u:object_r:audio_data_file:s0
+/data/camera(/.*)?	u:object_r:camera_data_file:s0
+/data/mediaserver(/.*)? u:object_r:camera_data_file:s0
+/data/cops.log		u:object_r:radio_data_file:s0
+/data/etc/bluetooth_bdaddr	u:object_r:bluetooth_data_file:s0
+/data/etc/filter	u:object_r:tad_data_file:s0
+/data/etc/wlan_macaddr	u:object_r:wifi_data_file:s0
+/data/etc/threshold	u:object_r:tad_data_file:s0
+/data/misc/COPS_DATA_0.csd.*	u:object_r:radio_data_file:s0
+/data/misc/cns.nvd	u:object_r:radio_data_file:s0
+/data/misc/mal_.*	u:object_r:radio_data_file:s0
+/data/misc/modemsilentreset_pin	u:object_r:radio_data_file:s0
+/data/misc/psdata(/.*)?	u:object_r:radio_data_file:s0
+/data/misc/ril_config	u:object_r:radio_data_file:s0
+/data/misc/telephony_log_levels(/.*)?	u:object_r:radio_data_file:s0
+/data/local/tmp/adm-socket	u:object_r:adm_socket:s0
+/data/local/tmp/rme_act.*	u:object_r:audio_data_file:s0
+/data/local/tmp/stecom-.*	u:object_r:radio_data_file:s0
+
+# Modemfs
+/modemfs(/.*)?		u:object_r:modem_file:s0

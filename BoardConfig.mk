@@ -63,7 +63,7 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_EXTERNAL_APPS = sdcard1
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/golden
+#TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/golden
 
 # Ramdisk
 TARGET_PROVIDES_ENVIRON_RC := true
@@ -194,9 +194,15 @@ TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,discard,noauto_da_alloc,journal_as
 TW_CRYPTO_FS_FLAGS := "0x00000406"
 TW_CRYPTO_KEY_LOC := "footer"
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+     /system/lib/hw/audio_policy.DB8520H.so|libsamsung_symbols.so \
+	 /system/lib/hw/audio.primary.DB8520H.so|libsamsung_symbols.so 
+
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#	device/samsung/golden/sepolicy
+BOARD_SEPOLICY_DIRS += \
+	device/samsung/golden/sepolicy
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += device/samsung/golden/sepolicy/private
 
 #USE_CLANG_PLATFORM_BUILD = false 
 

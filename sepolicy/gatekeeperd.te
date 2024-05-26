@@ -1,0 +1,2 @@
+allow gatekeeperd sysfs:file r_file_perms;
+allow gatekeeperd debugfs:file w_file_perms;

@@ -1,0 +1,1 @@
+allow sdcardd storage_file:dir mounton;

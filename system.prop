@@ -5,3 +5,4 @@ rild.libargs=-d /dev/ttyS0
 media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
 
+persist.media.treble_omx=false

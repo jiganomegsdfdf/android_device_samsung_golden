@@ -1,2 +1,0 @@
-allow sysinit block_device:dir { search };
-allow sysinit labeledfs:filesystem { remount };

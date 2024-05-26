@@ -1,0 +1,10 @@
+# iw
+type iw, domain;
+type iw_exec, exec_type, file_type;
+init_daemon_domain(iw)
+net_domain(iw)
+
+allow iw kernel:system module_request;
+allow iw self:capability { net_admin net_raw sys_module };
+allow iw self:netlink_socket create_socket_perms;
+allow iw tmpfs:chr_file { read write };

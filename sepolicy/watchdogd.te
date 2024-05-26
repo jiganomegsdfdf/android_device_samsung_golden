@@ -1,0 +1,4 @@
+type watchdogd_exec, exec_type, file_type;
+
+allow watchdogd watchdogd_exec:file { entrypoint rx_file_perms };
+allow watchdogd self:capability sys_nice;

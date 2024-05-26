@@ -1,0 +1,13 @@
+# STE, PS connection control
+type psccd, domain;
+type psccd_exec, exec_type, file_type;
+init_daemon_domain(psccd)
+
+allow psccd self:capability { net_admin sys_admin dac_override setuid };
+allow psccd self:{ netlink_socket socket } create_socket_perms;
+allow psccd atd:unix_dgram_socket sendto;
+allow psccd shell_data_file:dir rw_dir_perms;
+file_type_auto_trans(psccd, system_data_file, radio_data_file)
+file_type_auto_trans(psccd, socket_device, pscc_socket)
+type_transition psccd shell_data_file:{ file sock_file } radio_data_file;
+unix_socket_connect(psccd, simd, simd)

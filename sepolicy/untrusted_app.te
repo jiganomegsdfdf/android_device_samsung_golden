@@ -1,3 +1,0 @@
-allow untrusted_app graphics_device:chr_file { open read write getattr ioctl };
-allow untrusted_app init:unix_dgram_socket { write };
-allow untrusted_app init_tmpfs:file { open read };

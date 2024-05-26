@@ -1,31 +1,22 @@
 # STE admsrv
 #
+# Added for XTI trace device
+type stm_device, dev_type;
 type admsrv, domain;
 type admsrv_exec, exec_type, file_type;
+type admsrv_tmpfs, file_type;
+type_transition admsrv tmpfs:file admsrv_tmpfs;
+domain_auto_trans(init, admsrv_exec, admsrv)
 
-init_daemon_domain(admsrv)
-
-allow admsrv self:capability sys_nice;
-allow admsrv self:capability chown;
-allow admsrv self:capability dac_override;
-allow admsrv self:capability fowner;
-allow admsrv shell_data_file:dir { read search setattr add_name remove_name write };
-allow admsrv shell_data_file:sock_file { create getattr setattr open read write unlink };
-allow admsrv shell_data_file:file { open getattr setattr read write unlink create lock };
-allow admsrv sysfs_wake_lock: file { open read write };
-allow admsrv sysfs_devices_system_cpu:file { write };
-allow admsrv system_file:file { entrypoint execute_no_trans };
-allow admsrv admsrv:process { execmem };
-allow admsrv shell_exec:file { execute open read execute_no_trans };
-allow admsrv system_data_file:dir { open read write create remove_name add_name getattr setattr };
-allow admsrv system_data_file:file { create open rename read write link unlink lock setattr };
-allow admsrv device:file { open read write };
-allow admsrv device:chr_file { open read write ioctl };
-allow admsrv audio_device:dir { search };
-allow admsrv audio_device:chr_file { open getattr read write ioctl };
-allow admsrv unlabeled:file { setattr };
-allow admsrv radio_device:chr_file { open getattr read write ioctl };
-allow admsrv admsrv:netlink_socket { create bind setopt read write };
-allow admsrv tmpfs:dir { open read write add_name remove_name };
-allow admsrv admsrv_tmpfs:file { open read write create unlink };
-allow admsrv admsrv:fd { use };
+allow admsrv admsrv:netlink_socket create_socket_perms;
+allow admsrv admsrv_tmpfs:file create_file_perms;
+allow admsrv audio_device:dir search;
+allow admsrv { audio_device radio_device stm_device }:chr_file rw_file_perms;
+allow admsrv self:capability { chown dac_override fowner net_admin sys_nice };
+allow admsrv { shell_data_file system_data_file }:dir rw_dir_perms;
+allow admsrv { sysfs sysfs_devices_system_cpu sysfs_wake_lock }:file rw_file_perms;
+allow admsrv tmpfs:dir rw_dir_perms;
+allow admsrv audio_data_file:file create_file_perms;
+allow admsrv adm_socket:sock_file create_file_perms;
+type_transition admsrv { shell_data_file system_data_file }:file audio_data_file;
+type_transition admsrv shell_data_file:sock_file adm_socket;

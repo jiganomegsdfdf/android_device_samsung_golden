@@ -1,2 +1,2 @@
-allow zygote cpuctl_device:dir { search };
-allow zygote self:capability sys_nice;
+allow zygote debugfs:file rw_file_perms;
+allow zygote fuse:dir mounton;

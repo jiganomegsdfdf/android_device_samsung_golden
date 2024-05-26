@@ -1,0 +1,16 @@
+# STE, C&N service daemon
+type cn_server, domain;
+type cn_server_exec, exec_type, file_type;
+init_daemon_domain(cn_server)
+
+allow cn_server radio_prop:property_service set;
+allow cn_server self:capability { net_admin sys_admin setuid dac_override };
+allow cn_server self: { netlink_socket netlink_kobject_uevent_socket socket } create_socket_perms;
+allow cn_server socket_device:dir rw_dir_perms;
+allow cn_server sysfs_wake_lock:file w_file_perms;
+allow cn_server cn_socket:sock_file create_file_perms;
+file_type_auto_trans(cn_server, system_data_file, radio_data_file)
+type_transition cn_server socket_device:sock_file cn_socket;
+unix_socket_connect(cn_server, property, init)
+unix_socket_connect(cn_server, simd, simd)
+unix_socket_send(cn_server, modem, modem-help)

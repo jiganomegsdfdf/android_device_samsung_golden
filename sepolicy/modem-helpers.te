@@ -1,0 +1,11 @@
+# STE: Modem helpers
+type modem-help, domain;
+type modem-help_exec, exec_type, file_type;
+init_daemon_domain(modem-help)
+
+allow modem-help self:netlink_socket create_socket_perms;
+allow modem-help self:capability { dac_override net_admin };
+allow modem-help modem_block_device:blk_file r_file_perms;
+allow modem-help { radio_device tee_device }:chr_file rw_file_perms;
+allow modem-help sysfs_wake_lock:file rw_file_perms;
+file_type_auto_trans(modem-help, socket_device, modem_socket)

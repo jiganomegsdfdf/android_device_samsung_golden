@@ -1,0 +1,1 @@
+allow recovery_refresh sysfs:file r_file_perms;

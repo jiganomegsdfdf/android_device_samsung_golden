@@ -1,1 +1,1 @@
-allow installd cpuctl_device:dir { search };
+allow installd debugfs:file rw_file_perms;

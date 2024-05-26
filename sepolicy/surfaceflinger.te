@@ -1,2 +1,2 @@
-allow surfaceflinger surfaceflinger:process { execmem };
-allow surfaceflinger cpuctl_device:dir { search };
+allow surfaceflinger system_file:file execmod;
+allow surfaceflinger device:chr_file rw_file_perms;

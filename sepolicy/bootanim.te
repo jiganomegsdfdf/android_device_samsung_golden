@@ -1,4 +1,2 @@
-allow bootanim bootanim:process { execmem };
-allow bootanim graphics_device:chr_file { open read write getattr ioctl };
-allow bootanim cpuctl_device:dir { search };
-
+allow bootanim system_file:file execmod;
+allow bootanim device:chr_file rw_file_perms;
