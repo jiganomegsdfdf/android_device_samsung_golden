@@ -278,12 +278,24 @@ PRODUCT_PACKAGES += \
 android.hardware.vibrator@1.0-impl
 
 # Sensors
-#PRODUCT_PACKAGES += \
-#android.hardware.sensors@1.0-impl
+PRODUCT_PACKAGES += \
+android.hardware.sensors@1.0-impl
+
+# Lights
+PRODUCT_PACKAGES += \
+android.hardware.light@2.0-impl
 
 # GNSS HAL
 PRODUCT_PACKAGES += \
 android.hardware.gnss@1.0-impl
+
+# Selective power profile from a file.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/power_profile.xml:system/etc/power_profile.xml
+
+# memtrack
+PRODUCT_PACKAGES += \
+android.hardware.memtrack@1.0-impl
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
@@ -320,7 +332,6 @@ PRODUCT_PACKAGES += \
     libste_omxil-interface \
     libnmf \
     libasound \
-    lights.montblanc \
     power.montblanc \
     libblt_hw \
     libomxil-bellagio \
