@@ -298,8 +298,19 @@ on post-fs
     chmod 0660 /debug/prcmu/ape_opp
     chmod 0660 /debug/prcmu/ddr_opp
 
-	#Wifi fix
+	# Wifi fix
 	chown wifi wifi /sys/module/dhd/parameters/firmware_path
+	
+	# camera factory
+    chown system system /sys/class/sec/sec_cam/camtype
+    chown system system /sys/class/sec/flash/enable    
+    chown system system /sys/class/camera/rear/rear_flash
+    chown system system /sys/class/camera/front/front_camtype
+    chown system system /sys/class/camera/rear/rear_camtype
+    chown system system /sys/class/camera/flash/rear_flash
+	
+	# Torch workaround
+    chmod 0222 /sys/class/sec/flash/enable
 	
     # Install Kernel Module
     insmod "/system/vendor/lib/modules/3.0.101/j4fs.ko"
@@ -504,6 +515,11 @@ service charger /sbin/healthd -c
 service cspsa /system/bin/cspsa-server
     class parameter_storage
     user root
+    oneshot
+
+# init Phonet net device required for Phonet communication with Modem
+service phonet-netdev /system/bin/ifconfig upnlink0 up
+    class main
     oneshot
 
 # Copy RF trim data from CSPSA, and start the Modem Storage Agent (MSA) service

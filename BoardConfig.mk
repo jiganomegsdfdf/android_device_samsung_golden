@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+-include device/samsung/golden/twrp.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/golden/include
 TARGET_OTA_ASSERT_DEVICE := golden,i8190,GT-I8190
@@ -120,6 +121,7 @@ BOARD_CUSTOM_BT_CONFIG := device/samsung/golden/bluetooth/vnd_golden.txt
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/golden/ril/
+BOARD_GLOBAL_CFLAGS += -DSTE_POSIX_CLOCKS
 #BOARD_GLOBAL_CFLAGS += -DSAMSUNG_PROPRIETARY_RIL_WORKAROUND
 #BOARD_PROVIDES_LIBRIL := true
 #BOARD_PROVIDES_RILD := true
@@ -127,79 +129,60 @@ BOARD_RIL_CLASS := ../../../device/samsung/golden/ril/
 # Browser
 ENABLE_WEBGL := true
 
+#USE_LEGACY_LOCAL_AUDIO_HAL := true
+
 # Audio
+#BOARD_USES_ALSA_AUDIO := true
+#BOARD_USES_LEGACY_ALSA_AUDIO := true
+#BOARD_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DMR1_AUDIO_BLOB -DHAVE_PRE_KITKAT_AUDIO_POLICY_BLOB -DHAVE_PRE_KITKAT_AUDIO_BLOB
+#BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
+#BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
+#AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
+#USE_LEGACY_AUDIO_POLICY := 1
+
+
 BOARD_USES_ALSA_AUDIO := true
-BOARD_USES_LEGACY_ALSA_AUDIO := true
-#BOARD_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DMR1_AUDIO_BLOB -DBOARD_CANT_REALLOCATE_OMX_BUFFERS
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
-AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
+BOARD_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DMR1_AUDIO_BLOB
 USE_LEGACY_AUDIO_POLICY := 1
+USE_LEGACY_LOCAL_AUDIO_HAL := true
+
+
+
+# Blobs
+BOARD_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+BOARD_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 BOARD_USES_LEGACY_MMAP := true
+TARGET_ENABLE_NON_PIE_SUPPORT := true
 
 # Vold
-BOARD_VOLD_MAX_PARTITIONS := 25
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
-TARGET_USES_EXFAT := true
-
-# libutils
-#BOARD_GLOBAL_CFLAGS += -DREFBASE_JB_MR1_COMPAT_SYMBOLS
-
-#libbinder
-#BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
+#BOARD_VOLD_MAX_PARTITIONS := 25
+#BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+#BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
+#TARGET_USES_EXFAT := true
 
 #init
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 
 
+# Dex Pre-opt
+WITH_DEXPREOPT := true
+# Enable position-independent code for odex files
+# WITH_DEXPREOPT_PIC := true
+# Disable compression of precompiled odex with gzip
+WITH_DEXPREOPT_COMP := true
+DONT_DEXPREOPT_PREBUILTS := true
+
 # Charging mode
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-BACKLIGHT_PATH := /sys/class/backlight/panel/brightness
-CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
+# BOARD_NO_CHARGER_LED := true
+# BOARD_CHARGER_SHOW_PERCENTAGE := true
+# BOARD_CHARGER_DISABLE_INIT_BLANK := true
+# BOARD_CHARGING_MODE_BOOTING_LPM := /sys/devices/virtual/power_supply/battery/lpm_mode
+# BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_LPM_BOOT_ARGUMENT_NAME := lpm_boot
+BOARD_LPM_BOOT_ARGUMENT_VALUE := 1
 
-# Needed for blobs
-#BOARD_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
-
-# Recovery
-#RECOVERY_VARIANT := twrp
-BOARD_UMS_LUNFILE := "/sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun0/file"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun%d/file"
-TARGET_RECOVERY_FSTAB := device/samsung/golden/rootdir/fstab.samsunggolden
-BOARD_HAS_NO_MISC_PARTITION := true
-
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_RECOVERY_SWIPE := true
-BOARD_SUPPRESS_EMMC_WIPE := true
-RECOVERY_FSTAB_VERSION := 2
-#BOARD_RECOVERY_NEEDS_REL_INPUT := true
-BOARD_HAS_DOWNLOAD_MODE := true
-
-# TWRP Recovery defines
-DEVICE_RESOLUTION := 480x800
-TW_THEME := portrait_mdpi
-TARGET_RECOVERY_FORCE_PIXEL_FORMAT := RGB_565
-TARGET_USERIMAGES_USE_EXT4 := true
-RECOVERY_SDCARD_ON_DATA := true
-TW_INTERNAL_STORAGE_PATH := "/data/media"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-BOARD_HAS_NO_REAL_SDCARD := true
-TW_NO_USB_STORAGE := true
-TW_BRIGHTNESS_PATH := "/sys/devices/platform/pri_bl_ktd253/backlight/panel/brightness"
-TW_MAX_BRIGHTNESS := 255
-TW_INCLUDE_CRYPTO_SAMSUNG := true
-TW_INCLUDE_CRYPTO := true
-TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p25"
-TW_CRYPTO_MNT_POINT := "/data"
-TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic    wait,check"
-TW_CRYPTO_FS_FLAGS := "0x00000406"
-TW_CRYPTO_KEY_LOC := "footer"
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \

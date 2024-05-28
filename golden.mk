@@ -28,6 +28,8 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 # Inherit the proprietary vendors blobs for all codinas.
 $(call inherit-product-if-exists, vendor/samsung/golden/golden-vendor.mk)
 
+DEVICE_ENABLE_LOV := true
+DEVICE_WiFi_NEW := true
 
 #Releasetools
 #PRODUCT_COPY_FILES += \
@@ -76,8 +78,8 @@ PRODUCT_COPY_FILES += \
 
 # Media
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    $(LOCAL_PATH)/configs/etc/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configsnew/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/configsnew/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/omxloaders:system/omxloaders \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -88,7 +90,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ste.video.dec.mpeg4.in.size=8192 \
     ste.video.enc.out.buffercnt=5 \
     ste.video.dec.recycle.delay=1 \
-    ste.omx.ctx=0
+    ste.omx.ctx=0 \
+    ste.enable_audio_policy=false
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/bin/usbid_init.sh:system/bin/usbid_init.sh \
@@ -162,12 +165,20 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/etc/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/configs/etc/asound.conf:system/etc/asound.conf
+    $(LOCAL_PATH)/configs/etc/asound.conf:system/etc/asound.conf \
+    $(LOCAL_PATH)/configs/adm.sqlite-u8500:system/etc/adm.sqlite-u8500
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
-    audio.r_submix.default \
-    audio.usb.default 
+    audio.usb.default \
+    libaudioutils \
+    libasound
+
+# Sound trigger
+PRODUCT_PACKAGES += \
+    sound_trigger.stub.default \
+    android.hardware.soundtrigger@2.1-impl \
+    android.hardware.soundtrigger@2.1-service \
 
 # Enable repeatable keys in cwm
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -331,7 +342,6 @@ PRODUCT_PACKAGES += \
     libstelpcutils \
     libste_omxil-interface \
     libnmf \
-    libasound \
     power.montblanc \
     libblt_hw \
     libomxil-bellagio \
