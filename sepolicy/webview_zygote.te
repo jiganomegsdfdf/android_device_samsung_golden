@@ -1,3 +1,0 @@
-allow webview_zygote sysfs:file r_file_perms;
-allow webview_zygote debugfs:file w_file_perms;
-allow webview_zygote sysfs:dir r_dir_perms;

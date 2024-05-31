@@ -1,1 +1,0 @@
-allow recovery_persist sysfs:file r_file_perms;

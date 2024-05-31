@@ -1,3 +1,0 @@
-allow bootanim system_file:file execmod;
-allow bootanim device:chr_file rw_file_perms;
-allow bootanim debugfs:file { open write };

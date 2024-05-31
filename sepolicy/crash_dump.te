@@ -1,5 +1,0 @@
-allow crash_dump debugfs:file w_file_perms;
-allow crash_dump init:process { ptrace signal };
-allow crash_dump sysfs:file r_file_perms;
-allow crash_dump debugfs:file { open write };
-allow crash_dump sysfs:file { getattr open read };

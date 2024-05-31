@@ -1,2 +1,0 @@
-allow adbd sysfs:file { getattr open read };
-allow adbd device:chr_file { open read write };

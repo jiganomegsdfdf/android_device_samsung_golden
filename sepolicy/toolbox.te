@@ -1,5 +1,0 @@
-allow toolbox unlabeled:dir search;
-allow toolbox unlabeled:file { getattr setattr };
-allow toolbox sysfs:file create_file_perms;
-allow toolbox ram_device:blk_file { getattr open read write };
-

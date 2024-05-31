@@ -1,1 +1,0 @@
-allow installd debugfs:file rw_file_perms;

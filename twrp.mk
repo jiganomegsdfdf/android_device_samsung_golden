@@ -2,7 +2,7 @@
 #RECOVERY_VARIANT := twrp
 BOARD_UMS_LUNFILE := "/sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun%d/file"
-TARGET_RECOVERY_FSTAB := device/samsung/golden/rootdir/fstab.samsunggolden
+TARGET_RECOVERY_FSTAB := device/samsung/golden/rootdir/etc/fstab.samsunggolden
 BOARD_HAS_NO_MISC_PARTITION := true
 
 BOARD_HAS_NO_SELECT_BUTTON := true

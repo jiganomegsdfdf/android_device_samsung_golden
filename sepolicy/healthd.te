@@ -1,1 +1,0 @@
-allow healthd debugfs:file { open write };

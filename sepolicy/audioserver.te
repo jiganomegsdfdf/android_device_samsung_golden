@@ -1,7 +1,0 @@
-allow audioserver sysfs:file r_file_perms;
-allow audioserver system_file:file execmod;
-allow audioserver unlabeled:dir search;
-allow audioserver init:unix_stream_socket connectto;
-allow audioserver shell_data_file:sock_file write;
-allow audioserver adm_socket:sock_file write;
-allow audioserver admsrv:unix_stream_socket connectto;

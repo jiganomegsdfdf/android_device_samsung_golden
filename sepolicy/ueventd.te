@@ -1,1 +1,0 @@
-allow ueventd goldenparts_sysfs:file relabelto;
