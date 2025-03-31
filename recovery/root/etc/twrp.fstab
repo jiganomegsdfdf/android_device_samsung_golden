@@ -2,11 +2,11 @@
 /boot		emmc	/dev/block/bootdevice/by-name/boot			flags=display="Boot";flashimg=1;backup=1
 /recovery	emmc	/dev/block/bootdevice/by-name/recovery		flags=display="Recovery";flashimg=1;backup=1
 
-/system		ext4	/dev/block/bootdevice/by-name/system		flags=display="System";backup=1;wipeingui
-/vendor		ext4	/dev/block/bootdevice/by-name/vendor		flags=display="Vendor";backup=1;wipeingui
+/system		ext4	/dev/block/bootdevice/by-name/system		flags=display="System";backup=1;wipeingui;flashimg=1
+/vendor		ext4	/dev/block/bootdevice/by-name/vendor		flags=display="Vendor";backup=1;wipeingui;flashimg=1
 /modemfs	ext4	/dev/block/bootdevice/by-name/modemfs   	flags=display="Modem";backup=1;wipeingui;flashimg=1
 /efs		ext4    /dev/block/bootdevice/by-name/efs    		flags=display="EFS";backup=1;wipeingui;flashimg=1
-/preload	ext4	/dev/block/bootdevice/by-name/preload  		flags=display="Preload";backup=1;wipeingui;flashimg=1
+
 
 
 # Cache
